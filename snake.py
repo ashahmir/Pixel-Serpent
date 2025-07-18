@@ -54,4 +54,22 @@ class Snake:
         if self.serpent_head.heading() != RIGHT:
             self.serpent_head.setheading(180)
 
-# CREDITS: a.shahmir
+    def reset(self):
+        for parts in self.snake:
+            parts.goto(1000,1000)
+        self.snake.clear()
+        self.x_cord = 0
+        for x in range(3):
+            serpent = Turtle()
+            serpent.shape("square")
+            if x == 0:
+                serpent.color("brown")
+            else:
+                serpent.color("red")
+            serpent.penup()
+            serpent.goto(self.x_cord, 0)
+            self.snake.append(serpent)
+            self.x_cord -= 20
+        self.serpent_head = self.snake[0]
+
+# CREDITS: a.shahmirf
