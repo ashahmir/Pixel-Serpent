@@ -5,7 +5,6 @@ from food import Food
 from scoreboard import Scoreboard
 import random
 
-snake = []
 # SCREEN SETUP
 screen = Screen()
 screen.setup(width=600, height=600)
@@ -69,13 +68,16 @@ while game_on:
                 poison_timer_start = time.time()
     # Checking Collision with borders
     if serpent.serpent_head.xcor() > 280 or serpent.serpent_head.xcor() < -280 or serpent.serpent_head.ycor() > 280 or serpent.serpent_head.ycor() < -280:
-        game_on = False
-        _scoreboard.exit_game()
+        time.sleep(1)
+        _scoreboard.reset()
+        serpent.reset()
 
     # Checking Collision with snake itself
     for x in range(1, len(serpent.snake)):
         if serpent.serpent_head.distance(serpent.snake[x]) < 10:
-            game_on = False
-            _scoreboard.exit_game()
+            time.sleep(1)
+            _scoreboard.reset()
+            serpent.reset()
+            break
 screen.exitonclick()
 # CREDITS: a.shahmir
